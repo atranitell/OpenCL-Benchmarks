@@ -1,5 +1,16 @@
 #include "ocl_kernels/kernel_helper.h"
 
+#define FILTER_H 3
+#define FILTER_W 3
+#define DILATION_H 1
+#define DILATION_W 1
+#define PAD_H 1
+#define PAD_W 1
+#define STRIDE_H 1
+#define STRIDE_W 1
+#define IN_C 512
+#define OUT_C 1024
+
 __kernel void conv2d(__global const float* in,
                      __global float* out,
                      __global float* filter,
@@ -24,24 +35,25 @@ __kernel void conv2d(__global const float* in,
 
   if (ow >= out_w || oh >= out_h || oc >= out_c) return;
 
-  int ih = oh * stride_h - pad_h;
-  int iw = ow * stride_w - pad_w;
-  int p_fc = oc * in_c * filter_h * filter_w;
+  int ih = oh * STRIDE_H - PAD_H;
+  int iw = ow * STRIDE_W - PAD_W;
+  int p_fc = oc * IN_C * FILTER_H * FILTER_W;
   int p_out = oc * out_h * out_w + oh * out_w + ow;
 
   float reg = 0;
-  for (int ic = 0; ic < in_c; ++ic) {
+  float fs[3];
+  for (int ic = 0; ic < IN_C; ++ic) {
     int p_in = ic * in_h * in_w + ih * in_w + iw;
-    int p_f = p_fc + ic * filter_h * filter_w;
-    for (int fh = 0; fh < filter_h; ++fh) {
-      for (int fw = 0; fw < filter_w; ++fw) {
-        int ix = iw + fw * dilation_w;
-        int iy = ih + fh * dilation_h;
+    int p_f = p_fc + ic * FILTER_H * FILTER_W;
+    for (int fh = 0; fh < FILTER_H; ++fh) {
+      for (int fw = 0; fw < FILTER_W; ++fw) {
+        int ix = mad24(fw, DILATION_W, iw);
+        int iy = mad24(fh, DILATION_H, ih);
         if (ix >= 0 && ix < in_w && iy >= 0 && iy < in_h) {
-          reg += filter[p_f + fh * filter_w + fw] * in[p_in + fw * dilation_w];
+          reg = fma(filter[p_f + mad24(fh, FILTER_W, fw)], in[mad24(fw, DILATION_W, p_in)], reg);
         }
       }
-      p_in += in_w * dilation_w;
+      p_in = mad24(in_w, DILATION_W, p_in);
     }
   }
 

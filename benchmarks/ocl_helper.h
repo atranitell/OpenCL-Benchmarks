@@ -26,9 +26,9 @@
     if (status != CL_SUCCESS)                                       \
       std::cerr << "OpenCL calling error, code: " << status << ", " \
                 << ocl_status_code.at(status);                      \
-    std::cout << __FUNCTION__ << " " << __LINE__ << " " << status   \
-              << std::endl;                                         \
   }
+// std::cout << __FUNCTION__ << " " << __LINE__ << " " << status   \
+    //           << std::endl;                                         \
 
 //------------------------------------------------------------------------------
 //  Create an OpenCL context on the first available platform using

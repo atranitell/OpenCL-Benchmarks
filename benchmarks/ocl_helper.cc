@@ -95,7 +95,8 @@ cl_device_id ocl_create_device(cl_context context, cl_device_id deviceId) {
 cl_command_queue ocl_create_command_queue(cl_context context,
                                           cl_device_id deviceId) {
   cl_int err;
-  auto commandQueue_ = clCreateCommandQueue(context, deviceId, 0, &err);
+  auto commandQueue_ =
+      clCreateCommandQueue(context, deviceId, CL_QUEUE_PROFILING_ENABLE, &err);
   CL_CALL(err);
   return commandQueue_;
 }

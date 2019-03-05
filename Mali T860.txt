@@ -1,0 +1,71 @@
+---- Start to benchmark all conv implementation ----
+[CONV: Traditional Method]
+Idx:  0, Queue: 0.255, Submit: 0.613, Run: 1117.943, Total: 1118.302
+Idx:  1, Queue: 0.274, Submit: 0.824, Run: 915.376, Total: 915.926
+Idx:  2, Queue: 0.127, Submit: 0.961, Run: 915.642, Total: 916.476
+Idx:  3, Queue: 0.126, Submit: 0.833, Run: 915.607, Total: 916.314
+Idx:  4, Queue: 0.130, Submit: 0.840, Run: 916.192, Total: 916.902
+2.75086e+09	15895.8
+[CONV: Using predefined Macors]
+Idx:  0, Queue: 0.496, Submit: 0.836, Run: 828.720, Total: 829.060
+Idx:  1, Queue: 0.209, Submit: 0.906, Run: 747.574, Total: 748.271
+Idx:  2, Queue: 0.205, Submit: 0.928, Run: 747.441, Total: 748.164
+Idx:  3, Queue: 0.222, Submit: 0.947, Run: 747.527, Total: 748.252
+Idx:  4, Queue: 0.223, Submit: 0.922, Run: 747.381, Total: 748.080
+2.75086e+09	15895.8
+[CONV: Unrolling Loop with diminished operation]
+Idx:  0, Queue: 0.349, Submit: 0.706, Run: 915.897, Total: 916.255
+Idx:  1, Queue: 0.213, Submit: 0.966, Run: 821.566, Total: 822.319
+Idx:  2, Queue: 0.315, Submit: 1.020, Run: 820.010, Total: 820.715
+Idx:  3, Queue: 0.211, Submit: 0.947, Run: 821.192, Total: 821.928
+Idx:  4, Queue: 0.212, Submit: 1.078, Run: 821.120, Total: 821.986
+2.75086e+09	15895.8
+[CONV: Unrolling Loop]
+Idx:  0, Queue: 0.331, Submit: 0.692, Run: 1487.328, Total: 1487.690
+Idx:  1, Queue: 0.302, Submit: 1.076, Run: 806.139, Total: 806.914
+Idx:  2, Queue: 0.110, Submit: 0.796, Run: 806.635, Total: 807.321
+Idx:  3, Queue: 0.354, Submit: 1.347, Run: 806.859, Total: 807.851
+Idx:  4, Queue: 0.354, Submit: 1.357, Run: 805.170, Total: 806.172
+2.75086e+09	15895.8
+[CONV: Internal Math function]
+Idx:  0, Queue: 0.480, Submit: 0.700, Run: 934.741, Total: 934.961
+Idx:  1, Queue: 0.206, Submit: 0.630, Run: 747.652, Total: 748.075
+Idx:  2, Queue: 0.167, Submit: 0.506, Run: 747.558, Total: 747.898
+Idx:  3, Queue: 0.138, Submit: 0.630, Run: 747.625, Total: 748.117
+Idx:  4, Queue: 0.430, Submit: 0.967, Run: 747.731, Total: 748.268
+2.75086e+09	15895.8
+[CONV: Divide processing border]
+Idx:  0, Queue: 0.285, Submit: 0.481, Run: 749.986, Total: 750.181
+Idx:  1, Queue: 0.254, Submit: 0.566, Run: 568.389, Total: 568.701
+Idx:  2, Queue: 0.225, Submit: 0.655, Run: 568.620, Total: 569.050
+Idx:  3, Queue: 0.099, Submit: 0.528, Run: 575.686, Total: 576.114
+Idx:  4, Queue: 0.233, Submit: 0.665, Run: 574.848, Total: 575.281
+2.75086e+09	15895.8
+[CONV: Vector load]
+Idx:  0, Queue: 0.550, Submit: 0.911, Run: 1883.134, Total: 1883.495
+Idx:  1, Queue: 0.200, Submit: 0.872, Run: 690.360, Total: 691.032
+Idx:  2, Queue: 0.231, Submit: 0.894, Run: 690.740, Total: 691.404
+Idx:  3, Queue: 0.205, Submit: 0.934, Run: 690.932, Total: 691.661
+Idx:  4, Queue: 0.211, Submit: 0.881, Run: 690.523, Total: 691.193
+3.50088e+09	20229.7
+[CONV: Divide border and unrolling]
+Idx:  0, Queue: 0.467, Submit: 0.765, Run: 871.167, Total: 871.465
+Idx:  1, Queue: 0.201, Submit: 0.877, Run: 691.428, Total: 692.105
+Idx:  2, Queue: 0.204, Submit: 0.931, Run: 670.304, Total: 671.031
+Idx:  3, Queue: 0.209, Submit: 0.905, Run: 669.530, Total: 670.226
+Idx:  4, Queue: 0.211, Submit: 0.889, Run: 670.013, Total: 670.692
+2.75086e+09	15895.8
+[CONV: Best on buffer]
+Idx:  0, Queue: 0.799, Submit: 1.256, Run: 804.365, Total: 804.822
+Idx:  1, Queue: 0.264, Submit: 1.102, Run: 567.689, Total: 568.527
+Idx:  2, Queue: 0.197, Submit: 0.966, Run: 572.081, Total: 572.850
+Idx:  3, Queue: 0.266, Submit: 1.044, Run: 567.938, Total: 568.716
+Idx:  4, Queue: 0.274, Submit: 1.026, Run: 569.821, Total: 570.573
+2.75086e+09	15895.8
+[CONV: Image Sampler]
+Idx:  0, Queue: 0.392, Submit: 0.672, Run: 1028.526, Total: 1028.806
+Idx:  1, Queue: 0.339, Submit: 1.033, Run: 534.823, Total: 535.517
+Idx:  2, Queue: 0.256, Submit: 0.929, Run: 534.889, Total: 535.562
+Idx:  3, Queue: 0.223, Submit: 0.995, Run: 534.647, Total: 535.419
+Idx:  4, Queue: 0.253, Submit: 0.944, Run: 535.332, Total: 536.023
+2.75086e+09	15895.8
